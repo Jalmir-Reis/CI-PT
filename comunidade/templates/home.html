@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+        <div class="container mt-3">
+            <div style="text-align:center">
+            <h1 style="color: MediumBlue">Comunidade de Imigrantes em Portugal</h1>
+            <h5 face="Verdana">Trago esse espaço para todos os amigos e amigas imigrantes poderem divulgar seus serviços, além
+            de vagas de emprego e de arrendamento do qual tomem conhecimento, assim todos se ajudam. Criem suas
+                contas e sempre que desejado postem aqui informações que ajudem a comunidade.
+            </h5>
+            </div>
+            <hr>
+            {% for post in posts %}
+                <div class="row border mt-4 p-3 fundopost">
+                    <div class="col col-3">
+                        <div class="pe-2"><img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded image"  width="200" >
+                        <br><strong>{{ post.autor.username }}</strong>
+                        <br><p>Morada: {{ post.autor.morada }}</p>
+                        </div>
+                    </div>
+                    <div class="col col-9">
+                        <a style="text-decoration: none" href="{{ url_for('exibir_post', post_id=post.id) }}"><h4>{{ post.titulo }}</h4></a>
+                        <p>{{ post.corpo }}</p>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+
+        </div>
+<div class="row mb-5"></div>
+{% endblock %}
